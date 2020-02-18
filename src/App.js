@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css' 
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import NavBar from './components/layout/NavBar'
+import NavBar from './components/layout/NavBar';
 import Dashboard from './components/layout/Dashboard';
+import pokemon from './components/pokemon/Pokemon';
+import backgroundImage from './pattern.png';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <div className="container">
-          <Dashboard />
+      <Router>
+        <div className="App" style={{background: `url(${backgroundImage})`}}>
+          <NavBar />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="pokemon/:pokemonIndex" component={pokemon} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
